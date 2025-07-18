@@ -1,0 +1,112 @@
+{
+  "tableId": "inventoryTable",
+  "tableName": "Inventory Management",
+  "schemaVersion": "1.0.0",
+  "columns": [
+    {
+      "id": "item_name",
+      "name": "Item Name",
+      "type": "text",
+      "required": true,
+      "readOnly": false,
+      "width": 200
+    },
+    {
+      "id": "category",
+      "name": "Category",
+      "type": "select",
+      "options": [
+        { "value": "electronics", "label": "Electronics" },
+        { "value": "clothing", "label": "Clothing" },
+        { "value": "furniture", "label": "Furniture" },
+        { "value": "food", "label": "Food" }
+      ],
+      "readOnly": false,
+      "width": 200
+    },
+    {
+      "id": "in_stock",
+      "name": "In Stock",
+      "type": "checkbox",
+      "readOnly": false,
+      "width": 200
+    },
+    {
+      "id": "quantity",
+      "name": "Quantity",
+      "type": "number",
+      "readOnly": false,
+      "width": 200
+    },
+    {
+      "id": "unit_price",
+      "name": "Unit Price",
+      "type": "number",
+      "readOnly": false,
+      "width": 200
+    },
+    {
+      "id": "total_value",
+      "name": "Total Value",
+      "type": "formula",
+      "formula": "{quantity} + {unit_price}",
+      "readOnly": true,
+      "width": 200
+    },
+    {
+      "id": "supplier_info",
+      "name": "Supplier Info",
+      "type": "nested",
+      "readOnly": false,
+      "width": 400,
+      "headerGroup": "Additional Information",
+      "columns": [
+        {
+          "id": "supplier_name",
+          "name": "Supplier Name",
+          "type": "text",
+          "readOnly": false,
+          "width": 200,
+          "isLookup": true,
+          "lookupConfig": {
+            "endpoint": "/api/suppliers",
+            "queryParam": "name"
+          }
+        },
+        {
+          "id": "contact_email",
+          "name": "Contact Email",
+          "type": "text",
+          "readOnly": false,
+          "width": 200
+        }
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "item_name": "Keyboard",
+      "category": "electronics",
+      "in_stock": true,
+      "quantity": 10,
+      "unit_price": 50,
+      "total_value": 500,
+      "supplier_info": {
+        "supplier_name": "ABC Electronics",
+        "contact_email": "5tMlD@example.com"
+      }
+    },
+    {
+      "item_name": "Mouse",
+      "category": "electronics",
+      "in_stock": true,
+      "quantity": 5,
+      "unit_price": 30,
+      "total_value": 150,
+      "supplier_info": {
+        "supplier_name": "XYZ Electronics",
+        "contact_email": "iFt4M@example.com"
+      }
+    }
+  ]
+}
